@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"time"
 )
 
 type logger struct {
@@ -12,10 +11,10 @@ type logger struct {
 }
 
 func (l *logger) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	log.Printf("start %s\n", time.Now().String())
+	//log.Printf("start %s\n", time.Now().String())
 	log.Printf("%v: %v - %v", r.RemoteAddr, r.Method, r.RequestURI)
 	l.Inner.ServeHTTP(w, r)
-	log.Printf("finish %s\n", time.Now().String())
+	//log.Printf("finish %s\n", time.Now().String())
 }
 
 func hello(w http.ResponseWriter, r *http.Request) {
