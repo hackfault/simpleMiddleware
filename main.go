@@ -13,6 +13,9 @@ type logger struct {
 func (l *logger) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	//log.Printf("start %s\n", time.Now().String())
 	log.Printf("%v: %v - %v", r.RemoteAddr, r.Method, r.RequestURI)
+	for k, v := range r.Header {
+		log.Printf("%v: %v", k, v)
+	}
 	l.Inner.ServeHTTP(w, r)
 	//log.Printf("finish %s\n", time.Now().String())
 }
